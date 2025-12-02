@@ -19,7 +19,7 @@ header{
     margin-top: 30px;
 }
 .hero-header--container{
-    width: 95%;
+    width: 700px;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -37,12 +37,12 @@ header{
 .name-container{
     font-size: 1.4rem;
     line-height: 25px;
-    letter-spacing: 8px;
+    letter-spacing: 2px;
 }
 .occupation-container{
     font-size: 1.2rem;
     line-height: 18px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 .city-container{
     color: var(--subfont-color);
@@ -72,6 +72,9 @@ button{
     border: none;
     background-color: #fff;
     border-radius: 10px;
+}
+button:hover{
+    
 }
 .email-icon{
     background-image: url("/assets/icons/correo-electronico.png");
@@ -130,7 +133,7 @@ justify-content: center;
     border-radius: 15px;
 }
 .about-me-info--coontainer{
-    width: 95%;
+    width: 700px;
     margin: 0 auto;
         margin-top: 50px;
 
@@ -147,3 +150,47 @@ justify-content: center;
     color: var(--subfont-color);
     font-weight: 500;
 }
+.experience-info--container{
+    width: 700px;
+    height: auto;
+    margin: 40px auto;
+}
+
+.card-experience-container{
+    width: 98%;
+    height: auto;
+    border: 1px solid var(--subfont-color);
+    padding: 20px;
+    margin: 10px auto 10px ;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.card-experience-container p{
+    color: var(--subfont-color);
+    line-height: 25px;
+    margin-top: 10px;
+}
+.title-experience-info--container{
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
+    align-content: center;
+}
+.title-experience{
+    display: inline-flex;
+    width: 60%;
+    align-items: flex-end;
+
+}
+.title-experience p{
+    margin-left: 10px;
+    color: var(--subfont-color);
+}
+.title-experience h3{
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+.time-container{
+    color: var(--subfont-color);
+}
+
