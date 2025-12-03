@@ -194,3 +194,48 @@ justify-content: center;
     color: var(--subfont-color);
 }
 
+.galery-info--container{
+    width: 700px;
+    margin: 10px auto;
+}
+.projects-cards--container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+.galery-cards{
+    width: 300px;
+    height: auto;
+    background-color: #fff;
+    margin: 10px auto;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 1px srgb(0, 0, 0.5, 0.4)
+}
+.galery-cards img{
+    width: 100%;
+    height: 140px;
+    height: auto;
+    object-fit: cover;
+}
+.galery-cards h3{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 20px;
+
+}
+.galery-cards p{
+    font-size: 1rem;
+    color: var(--subfont-color);
+    line-height: 20px;
+    margin-bottom: 10px;
+}
+.galery-cards span{
+    background-color: #3ebee680 ;
+    color: #0000d9;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
