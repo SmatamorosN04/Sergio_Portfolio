@@ -74,7 +74,8 @@ button{
     border-radius: 10px;
 }
 button:hover{
-    
+    border: 1px solid #3ebee680;
+    transform: animate__pulse;
 }
 .email-icon{
     background-image: url("/assets/icons/correo-electronico.png");
@@ -232,10 +233,39 @@ justify-content: center;
     line-height: 20px;
     margin-bottom: 10px;
 }
+.tecnologies--container{
+    width: 90%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(2,auto);
+    grid-auto-flow: row;
+    gap: 10px; 
+}
 .galery-cards span{
     background-color: #3ebee680 ;
     color: #0000d9;
+    margin-top: 5px;
     padding: 5px;
     border-radius: 5px;
-    
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+.hability-containers{
+    width: 700px;
+    height: 80px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+
+}
+.hability-list-container li{
+    list-style: none;
+    display: inline-block;
+    background-color: #19002A;
+    color: #fff;
+    padding: 8px;
+    border-radius: 10px;
+    margin: 10px 5px;
 }
