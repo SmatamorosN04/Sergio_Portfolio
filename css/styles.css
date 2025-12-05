@@ -3,6 +3,7 @@
     --font-color: #000000;
     --cards-color:#fff;
     --subfont-color: grey;
+    
 }
 *{
     margin: 0;
@@ -17,6 +18,11 @@ header{
     width: 100%;
     height: 200px;
     margin-top: 30px;
+}
+h2{
+ font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 .hero-header--container{
     width: 700px;
@@ -139,11 +145,6 @@ justify-content: center;
         margin-top: 50px;
 
 }
-.about-me--container h2{
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
 .about-me--container p{
     font-size: 1.1rem;
     line-height: 25px;
@@ -162,7 +163,6 @@ justify-content: center;
     height: auto;
     border: 1px solid var(--subfont-color);
     padding: 20px;
-    margin: 10px auto 10px ;
     background-color: #fff;
     border-radius: 15px;
 }
@@ -193,6 +193,7 @@ justify-content: center;
 }
 .time-container{
     color: var(--subfont-color);
+    
 }
 
 .galery-info--container{
@@ -205,15 +206,20 @@ justify-content: center;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    gap: 15px;
 }
 .galery-cards{
-    width: 300px;
+    width: 100%;
     height: auto;
     background-color: #fff;
-    margin: 10px auto;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 1px 1px 1px 1px srgb(0, 0, 0.5, 0.4)
+    box-shadow: 1px 1px 1px 1px srgb(0, 0, 0.5, 0.4);
+    transition: all 0.3s ease
+}
+.galery-cards:hover{
+    box-shadow: 10px 10px 54px -7px rgba(0,0,0,0.75);
+    transform: translateY(-2px);
 }
 .galery-cards img{
     width: 100%;
@@ -241,16 +247,54 @@ justify-content: center;
     grid-template-rows: repeat(2,auto);
     grid-auto-flow: row;
     gap: 10px; 
+    justify-items: start;
+    justify-content: start;
+    align-items: stretch;
 }
 .galery-cards span{
-    background-color: #3ebee680 ;
-    color: #0000d9;
+    
     margin-top: 5px;
     padding: 5px;
     border-radius: 5px;
     width: auto;
     height: auto;
     text-align: center;
+}
+.html-card{
+    background-color: #E34F26;
+    color: #fff;
+}
+.css-card{
+    background-color: #563D7C;
+    color: #fff;
+}
+.js-card{
+    background-color: #F7DF1E	;
+    color: #000000;
+}
+.node-card{
+    background-color: #339933	;
+    color: #fff;
+}
+.php-card{
+    background-color: #777BB4	;
+    color: #fff;
+}
+.vite-card{
+    background-color: #646CFF;
+    color: #fff;
+}
+.npm-card{
+    background-color: #CB3837;
+    color: #fff;
+}
+.git-card{
+    background-color: #171515	;
+    color: #fff;
+}
+.ollama-card{
+    background-color: #CAAD8D;
+    color: #000;
 }
 .hability-containers{
     width: 700px;
@@ -269,3 +313,4 @@ justify-content: center;
     border-radius: 10px;
     margin: 10px 5px;
 }
+
