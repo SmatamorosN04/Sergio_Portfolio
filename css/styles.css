@@ -138,6 +138,7 @@ justify-content: center;
     height: 100%;
     width: 100%;
     border-radius: 15px;
+    object-fit: cover;
 }
 .about-me-info--coontainer{
     width: 700px;
@@ -210,7 +211,7 @@ justify-content: center;
 }
 .galery-cards{
     width: 100%;
-    height: auto;
+    height: 450px;
     background-color: #fff;
     padding: 20px;
     border-radius: 15px;
@@ -242,18 +243,15 @@ justify-content: center;
 .tecnologies--container{
     width: 90%;
     height: auto;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    grid-template-rows: repeat(2,auto);
-    grid-auto-flow: row;
-    gap: 10px; 
+    display: flex;
+    flex-wrap: wrap;
     justify-items: start;
     justify-content: start;
-    align-items: stretch;
+    align-items: start;
 }
 .galery-cards span{
     
-    margin-top: 5px;
+ margin: 3px 3px 0  3px;
     padding: 5px;
     border-radius: 5px;
     width: auto;
@@ -312,6 +310,10 @@ justify-content: center;
     padding: 8px;
     border-radius: 10px;
     margin: 10px 5px;
+}
+.hability-list-container li:hover{
+     box-shadow: 1px 1px 1px 1px srgb(0, 0, 0.5, 0.4);
+    transition: all 0.3s ease
 }
 @media (max-width: 320px){
     header{
