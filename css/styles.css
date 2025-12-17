@@ -197,7 +197,7 @@ justify-content: center;
     
 }
 
-.galery-info--container{
+#galery-info--container{
     width: 700px;
     margin: 10px auto;
 }
@@ -345,7 +345,7 @@ justify-content: center;
     .experience-info--container{
         width: 100%;
     }
-    .galery-info--container{
+    #galery-info--container{
         width: 100%;
     }
     .projects-cards--container{
