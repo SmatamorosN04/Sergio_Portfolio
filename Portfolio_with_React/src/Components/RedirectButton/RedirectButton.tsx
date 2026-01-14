@@ -10,7 +10,7 @@ const RedirectButton: React.FC<ButtonProps> = ({ redirect, name }) => {
    };
 
     return(
-        <button onClick={handleRedirect} className='w-27.5 h-10 ml-2.5 bg-white rounded-2xl '>
+        <button onClick={handleRedirect} className='w-27.5 h-10 ml-2.5 bg-white rounded-2xl dark:bg-black dark:text-white'>
             {name}
         </button>
     )

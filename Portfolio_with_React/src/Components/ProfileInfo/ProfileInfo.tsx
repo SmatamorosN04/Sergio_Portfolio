@@ -8,10 +8,10 @@ type infoProps = {
 
 const ProfileInfo: React.FC<infoProps> = ({name, location, abilities}) => {
     return(
-    <section className='w-150 h-full flex flex-col justify-around'>
-        <h1 className='text-4xl leading-6 text-black font-bold mb-3'>{name}</h1>
+    <section className='w-150 h-full flex flex-col justify-around dark:text-white'>
+        <h1 className='text-4xl leading-6 text-black font-bold mb-3 dark:text-white'>{name}</h1>
         <h2 className='text-2xl leading-4 text-blac font-medium mb-3'>{abilities}</h2>
-        <p className='text-gray-600 text-xl font-light'>{location}</p>
+        <p className='text-gray-600 text-xl font-light dark:text-gray-100'>{location}</p>
         <section className='flex flex-row'>
             <RedirectButton name={'GitHub'} redirect={'https://github.com/SmatamorosN04'}></RedirectButton>
             <RedirectButton name={'LinkedIn'} redirect={'https://www.linkedin.com/in/sergio-matamoros-6a75a026a/'}></RedirectButton>
