@@ -1,27 +1,20 @@
-import ProfileImage from "./Components/ProfileImage/ProfileImage.tsx";
-import ProfileInfo from "./Components/ProfileInfo/ProfileInfo.tsx";
-import yo from './assets/yo.png'
-import AboutMeInfo from "./Components/AboutMeInfo/AboutMeinfo.tsx";
-import ExperiencesCard from "./Components/ExperiencesCard/ExperiencesCard.tsx";
-import ProjectCard from "./Components/ProjectsCard/ProjectCard.tsx";
-import SkillCards from "./Components/HabilitiesCard/SkillCards.tsx";
-import './App.css'
-import ThemeToggle from "./Components/DarkModeButton/ThemeToggle.tsx";
+import ProfileImage from "../Components/ProfileImage/ProfileImage.tsx";
+import ProfileInfo from "../Components/ProfileInfo/ProfileInfo.tsx";
+import yo from '../assets/yo.png'
+import AboutMeInfo from "../Components/AboutMeInfo/AboutMeinfo.tsx";
+import ExperiencesCard from "../Components/ExperiencesCard/ExperiencesCard.tsx";
+import ProjectCard from "../Components/ProjectsCard/ProjectCard.tsx";
+import SkillCards from "../Components/HabilitiesCard/SkillCards.tsx";
 
 
 
-function App() {
 
-  return (
-      <html>
-        <head>
-          <meta charSet="UTF-8"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <script></script>
-          <title>My portofolio</title>
-        </head>
-        <body className='bg-gray-100 w-175 mx-auto dark:bg-gray-800'>
-        <ThemeToggle></ThemeToggle>
+function Home() {
+
+    return (
+        <>
+
+        <div className='bg-gray-100 w-175 mx-auto dark:bg-gray-800'>
         <header className='w-full h-50 mt-7.5'>
             <section className='w-175 h-full mx-auto flex flex-row justify-between items-start'>
                 <ProfileInfo name={'Sergio Matamoros'} abilities={'Junior FullStack developer'} location={'Managua, Nicaragua'}></ProfileInfo>
@@ -46,12 +39,11 @@ function App() {
             <ProjectCard username='SmatamorosN04'></ProjectCard>
         </main>
         <footer className='w-full mx-auto mt-12.5'>
-        <SkillCards Skills={["HTML5", 'CSS3', 'JAVASCRIPT' , 'SQL' , 'GIT' , 'VITE.JS' , 'NODE.JS' , 'PHP' , 'TYPESCRIPT' , 'REACT.JS' , 'TAILWINDCSS']}></SkillCards>
+            <SkillCards Skills={["HTML5", 'CSS3', 'JAVASCRIPT' , 'SQL' , 'GIT' , 'VITE.JS' , 'NODE.JS' , 'PHP' , 'TYPESCRIPT' , 'REACT.JS' , 'TAILWINDCSS']}></SkillCards>
         </footer>
-        </body>
-      </html>
+        </div>
+        </>
+    )
 
-  )
 }
-
-export default App
+export default Home

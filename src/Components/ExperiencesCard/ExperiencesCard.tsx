@@ -12,7 +12,7 @@ return(
     <section className='mt-10'>
         <h1 className='text-3xl font-bold dark:text-white'> {title}</h1>
 
-        <article className='w-full mt-5  border  border-gray-800 p-4 rounded-lg bg-white h-40 dark:bg-black dark:border-gray-200'>
+        <article className='w-full mt-5  border  border-gray-800 p-4 rounded-lg bg-white h-45 dark:bg-black dark:border-gray-200'>
             <div className='grid grid-cols-5 grid-rows-2 h-20'>
                 <h1 className='text-2xl col-start-1 col-end-3
                 font-bold text-black dark:text-white'>{name}</h1>
