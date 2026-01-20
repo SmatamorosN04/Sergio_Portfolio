@@ -47,6 +47,7 @@ const ProjectCard: React.FC<RepolistProps> = ({ username }) => {
        if (sortType === 'oldest'){
            return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
        }
+       return 0;
 
     });
 
