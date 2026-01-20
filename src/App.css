@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@plugin '@egoist/tailwindcss-icons';
+
+@custom-variant dark (&:where(.dark, .dark *));
