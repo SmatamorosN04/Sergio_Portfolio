@@ -5,6 +5,7 @@ import AboutMeInfo from "../Components/AboutMeInfo/AboutMeinfo.tsx";
 import ExperiencesCard from "../Components/ExperiencesCard/ExperiencesCard.tsx";
 import ProjectCard from "../Components/ProjectsCard/ProjectCard.tsx";
 import SkillCards from "../Components/HabilitiesCard/SkillCards.tsx";
+import FeaturedProject from "../Components/FeaturedProjects/FeaturedProjects.tsx";
 
 
 
@@ -34,6 +35,7 @@ function Home() {
                         text={"Junior Fullstack Developer with a strong focus on building scalable, high-performance web applications using Next.js and TypeScript. Currently mastering Web3 and advanced backend logic."}
                     />
 
+                    <FeaturedProject />
                     <section>
                         <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white  w-fit">
                             Experience
@@ -64,7 +66,6 @@ function Home() {
                 </main>
 
                 <footer className='mt-16 pb-10'>
-                    <h2 className="text-xl font-bold mb-4 text-center md:text-left">Technical Stack</h2>
                     <SkillCards Skills={["Next.js", "TypeScript", "Node.js", "MongoDB", "Python", "Java Spring", "Tailwind CSS", "JavaScript" , "CSS" , "PostgresSQL" ]} />
                 </footer>
             </div>
