@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
-import {ExternalLink, Github} from "lucide-react";
+import {useEffect, useState} from "react";
+import {Code2, ExternalLink, Github} from "lucide-react";
 
 const SkeletonCard = () => (
     <div className='flex flex-col w-full min-h-112.5 bg-white p-5 rounded-xl border border-gray-200 dark:border-gray-800 dark:bg-black animate-pulse'>
@@ -17,10 +17,13 @@ const SkeletonCard = () => (
 );
 
 interface RepoProps {
+    topics: string[];
     id: number;
     name: string;
     description: string | null;
     language: string | null;
+    languages_url: string;
+    languages?: string[];
     created_at: string;
     updated_at: string;
 }
@@ -39,17 +42,49 @@ const ProjectCard: React.FC<RepolistProps> = ({ username }) => {
     useEffect(() => {
         const fetchRepos = async () => {
             try {
-                const response = await fetch(`https://api.github.com/users/${username}/repos`);
+                const response = await fetch(`https://api.github.com/users/${username}/repos?sort=created&per_page=10`);
+
+                if (!response.ok) {
+                    throw new Error(`GitHub API respondió con status: ${response.status}`);
+                }
+
                 const data: RepoProps[] = await response.json();
-                setRepos(data);
+
+                if (!Array.isArray(data)) {
+                    throw new Error("La respuesta de GitHub no es un array válido.");
+                }
+
+                const reposWithTech = await Promise.all(
+                    data.map(async (repo) => {
+                        try {
+                            const langRes = await fetch(repo.languages_url);
+                            if (!langRes.ok) return { ...repo, languages: [repo.language || "Misc"] };
+
+                            const langData = await langRes.json();
+                            const combined = Array.from(new Set([...Object.keys(langData), ...(repo.topics || [])]));
+
+                            return {
+                                ...repo,
+                                languages: combined.length > 0 ? combined : [repo.language || "Misc"]
+                            };
+                        } catch (e) {
+                            return { ...repo, languages: [repo.language || "Misc"] };
+                        }
+                    })
+                );
+
+                setRepos(reposWithTech);
             } catch (error) {
-                console.error('error fetching repos', error);
+                console.error('Error detallado al buscar repos:', error);
             } finally {
                 setLoading(false);
             }
         };
+
         fetchRepos();
     }, [username]);
+
+
 
     const sortedRepos = [...repos].sort((a, b) => {
         if (sortType === 'recent') {
@@ -106,13 +141,23 @@ const ProjectCard: React.FC<RepolistProps> = ({ username }) => {
                             <p className='text-sm text-gray-600 mt-2 dark:text-gray-300 grow'>
                                 {repo.description ?? "No description available for this repository."}
                             </p>
-
-                            <div className='mt-4 flex flex-wrap gap-2'>
-                                <span className='px-3 py-1 text-xs font-semibold text-white bg-sky-700 rounded-md'>
-                                    {repo.language ?? "Misc"}
-                                </span>
-
+                            <div className="mb-6">
+                                <div className="flex items-center gap-2 mb-3 text-gray-400">
+                                    <Code2 size={14} />
+                                    <span className="text-[10px] uppercase font-bold tracking-wider">Tech Stack</span>
+                                </div>
+                                <div className='flex flex-wrap gap-2'>
+                                    {repo.languages?.map((lang) => (
+                                        <span
+                                            key={lang}
+                                            className='px-2 py-1 text-[10px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-md'
+                                        >
+                                        {lang}
+                                    </span>
+                                    ))}
+                                </div>
                             </div>
+
                             <div className='mt-6 pt-4 border-t border-gray-100 dark:border-gray-800'>
                                 <a
                                     href={`https://github.com/${username}/${repo.name}`}
@@ -130,7 +175,6 @@ const ProjectCard: React.FC<RepolistProps> = ({ username }) => {
                 )}
             </section>
 
-            {/* Footer de paginación solo se muestra si no está cargando */}
             {!loading && (
                 <footer className='flex flex-wrap justify-center items-center gap-2 mt-10'>
                     <button
