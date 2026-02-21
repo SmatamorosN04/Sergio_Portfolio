@@ -10,10 +10,9 @@ const FeaturedProject: React.FC = () => {
             <article className="group relative w-full bg-white dark:bg-black rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg transition-all hover:shadow-2xl">
                 <div className="flex flex-col lg:flex-row">
 
-                    {/* 1. Image Section: Left on desktop, Top on mobile */}
                     <div className="w-full lg:w-1/2 overflow-hidden bg-gray-200 dark:bg-gray-900">
                         <img
-                            src="/assets/img/Portada.png"
+                            src="/src/assets/Portada.png"
                             alt="ArielCalendar Preview"
                             className="w-full h-full object-cover min-h-62.5 lg:min-h-100 transition-transform duration-500 group-hover:scale-105"
                         />
