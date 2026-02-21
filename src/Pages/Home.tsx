@@ -8,42 +8,67 @@ import SkillCards from "../Components/HabilitiesCard/SkillCards.tsx";
 
 
 
-
 function Home() {
-
     return (
-        <>
+        <div className='bg-gray-100 min-h-screen dark:bg-gray-900 transition-colors duration-300'>
+            <div className='max-w-4xl mx-auto px-6 py-10'>
 
-        <div className='bg-gray-100 w-175 mx-auto dark:bg-gray-800'>
-        <header className='w-full h-50 mt-7.5'>
-            <section className='w-175 h-full mx-auto flex flex-row justify-between items-start'>
-                <ProfileInfo name={'Sergio Matamoros'} abilities={'Junior FullStack developer'} location={'Managua, Nicaragua'}></ProfileInfo>
-                <section className='w-50 h-50'>
-                    <ProfileImage resource={yo}></ProfileImage>
-                </section>
-            </section>
-        </header>
-        <main className='w-full mx-auto mt-12.5'>
-            <AboutMeInfo title={'About Me'} text={'My name is Sergio Armando Matamoros Nuñez' +
-                ', and I a' +
-                'm currently a Computer Engineering student. I have a strong passion for software development, artificial intelligence' +
-                '. What excites me the most about technology is its potential to transform the way we learn' +
-                ', communicate, and solve real-world problems.'}></AboutMeInfo>
+                <header className='w-full'>
+                    <section className='flex flex-col-reverse md:flex-row justify-between items-center gap-8'>
+                        <div className="text-center md:text-left">
+                            <ProfileInfo
+                                name={'Sergio Matamoros'}
+                                abilities={'Junior FullStack Developer'}
+                                location={'Managua, Nicaragua'}
+                            />
+                        </div>
+                        <section className='w-40 mb-4 sm:mb-0 h-40 md:w-50 md:h-50 shrink-0'>
+                            <ProfileImage resource={yo}/>
+                        </section>
+                    </section>
+                </header>
 
-            <ExperiencesCard title={'Experiences'} name={'Aceitera el Real'} mail={'@none'}
-                             time={'march 2025 - september 2025'}
-                             description={'I completed an internship in the IT Department as part of the technical support team, respon' +
-                                 'sible for fixing hardware problems on various technological equipment, managing devices assigned to employees, and network management.'
-                             }
-            ></ExperiencesCard>
-            <ProjectCard username='SmatamorosN04'></ProjectCard>
-        </main>
-        <footer className='w-full mx-auto mt-12.5'>
-            <SkillCards Skills={["HTML5", 'CSS3', 'JAVASCRIPT' , 'SQL' , 'GIT' , 'VITE.JS' , 'NODE.JS' , 'PHP' , 'TYPESCRIPT' , 'REACT.JS' , 'TAILWINDCSS']}></SkillCards>
-        </footer>
+                <main className='mt-12 space-y-16'>
+                    <AboutMeInfo
+                        title={'About Me'}
+                        text={"Junior Fullstack Developer with a strong focus on building scalable, high-performance web applications using Next.js and TypeScript. Currently mastering Web3 and advanced backend logic."}
+                    />
+
+                    <section>
+                        <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white  w-fit">
+                            Experience
+                        </h2>
+                        <ExperiencesCard
+                            title={'IT Internship'}
+                            name={'Aceitera el Real'}
+                            time={'March 2025 - September 2025'}
+                            description={'Responsible for hardware maintenance, device management, and network infrastructure.'}
+                        />
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white  w-fit">
+                            Featured Project
+                        </h2>
+                        <ExperiencesCard
+                            title={'ArielCalendar - Management System'}
+                            name={'Freelance Project'}
+                            time={'Jan 2026 - Feb 2026 [cite: 23]'}
+                            description={'Fullstack architecture using Next.js 16, TypeScript, and MongoDB. Features Server Actions for CRUD and a secure Admin Dashboard.'}
+                        />
+                    </section>
+
+                    <section className="w-full overflow-hidden">
+                        <ProjectCard username='SmatamorosN04' />
+                    </section>
+                </main>
+
+                <footer className='mt-16 pb-10'>
+                    <h2 className="text-xl font-bold mb-4 text-center md:text-left">Technical Stack</h2>
+                    <SkillCards Skills={["Next.js", "TypeScript", "Node.js", "MongoDB", "Python", "Java Spring", "Tailwind CSS", "JavaScript" , "CSS" , "PostgresSQL" ]} />
+                </footer>
+            </div>
         </div>
-        </>
     )
-
 }
 export default Home

@@ -1,4 +1,4 @@
-type Lenguage= "HTML5" | 'CSS3'| 'JAVASCRIPT' | 'SQL' | 'GIT' | 'VITE.JS' | 'NODE.JS' | 'PHP' | 'TYPESCRIPT' | 'REACT.JS' | 'TAILWINDCSS'
+type Lenguage= "Next.js" | "TypeScript" | "JavaScript" | "CSS" | "PostgresSQL" | "Node.js" | "MongoDB" | "Java Spring" | "Tailwind CSS" | "Python"
 
 type skillProps = {
     Skills: Lenguage[]

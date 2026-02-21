@@ -1,30 +1,42 @@
 type ExperiencesProps = {
     title: string;
     name: string;
-    mail: string;
+    mail?: string;
     description: string;
     time: string;
 }
 
-const ExperiencesCard: React.FC<ExperiencesProps> = ({title, name, mail, description, time }) => {
+const ExperiencesCard: React.FC<ExperiencesProps> = ({ title, name, mail, description, time }) => {
+    return (
+        <section className='mt-10 w-full'>
+            <h1 className='text-2xl md:text-3xl font-bold dark:text-white mb-5'>
+                {title}
+            </h1>
 
-return(
-    <section className='mt-10'>
-        <h1 className='text-3xl font-bold dark:text-white'> {title}</h1>
+            <article className='w-full border border-gray-800 p-5 rounded-lg bg-white dark:bg-black dark:border-gray-200 shadow-sm'>
+                <div className='flex flex-col sm:flex-row justify-between items-start gap-2 mb-4'>
+                    <div className="flex flex-col">
+                        <h2 className='text-xl md:text-2xl font-bold text-black dark:text-white leading-tight'>
+                            {name}
+                        </h2>
+                        {mail && (
+                            <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
+                                {mail}
+                            </p>
+                        )}
+                    </div>
 
-        <article className='w-full mt-5  border  border-gray-800 p-4 rounded-lg bg-white h-45 dark:bg-black dark:border-gray-200'>
-            <div className='grid grid-cols-5 grid-rows-2 h-20'>
-                <h1 className='text-2xl col-start-1 col-end-3
-                font-bold text-black dark:text-white'>{name}</h1>
-                <p className='text-lg col-start-3 col-end-3 hidden
-                font-light text-gray-500 text-start align-middle dark:text-gray-100'>{mail}</p>
-                <p className='text-lg font-light col-start-4 col-end-6
-                text-gray-500 text-center dark:text-gray-100'>{time}</p>
-                <p className='text-lg font-medium row-start-2 col-start-1 col-end-6
-                text-gray-600 dark:text-gray-100'>{description}</p>
-            </div>
-        </article>
-    </section>
-)
-    }
-export default ExperiencesCard
+                    <p className='text-sm md:text-base font-medium text-gray-500 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full'>
+                        {time}
+                    </p>
+                </div>
+
+                <p className='text-base md:text-lg font-normal text-gray-600 dark:text-gray-200 leading-relaxed'>
+                    {description}
+                </p>
+            </article>
+        </section>
+    )
+}
+
+export default ExperiencesCard;
