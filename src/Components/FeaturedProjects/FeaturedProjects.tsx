@@ -12,7 +12,7 @@ const FeaturedProject: React.FC = () => {
 
                     <div className="w-full lg:w-1/2 overflow-hidden bg-gray-200 dark:bg-gray-900">
                         <img
-                            src="/src/assets/Portada.png"
+                            src="/src/assets/portada.png"
                             alt="ArielCalendar Preview"
                             className="w-full h-full object-cover min-h-62.5 lg:min-h-100 transition-transform duration-500 group-hover:scale-105"
                         />

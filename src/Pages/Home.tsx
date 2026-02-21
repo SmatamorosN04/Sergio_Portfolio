@@ -6,6 +6,7 @@ import ExperiencesCard from "../Components/ExperiencesCard/ExperiencesCard.tsx";
 import ProjectCard from "../Components/ProjectsCard/ProjectCard.tsx";
 import SkillCards from "../Components/HabilitiesCard/SkillCards.tsx";
 import FeaturedProject from "../Components/FeaturedProjects/FeaturedProjects.tsx";
+import PersonalSkills from "../Components/PersonalSkills/PersonalSkills.tsx";
 
 
 
@@ -66,6 +67,7 @@ function Home() {
                 </main>
 
                 <footer className='mt-16 pb-10'>
+                    <PersonalSkills/>
                     <SkillCards Skills={["Next.js", "TypeScript", "Node.js", "MongoDB", "Python", "Java Spring", "Tailwind CSS", "JavaScript" , "CSS" , "PostgresSQL" ]} />
                 </footer>
             </div>

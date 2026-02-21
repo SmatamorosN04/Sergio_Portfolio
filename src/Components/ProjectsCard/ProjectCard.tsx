@@ -79,7 +79,7 @@ const ProjectCard: React.FC<RepolistProps> = ({ username }) => {
                 {currentRepos.map((repo) => (
                     <article
                         key={repo.id}
-                        className='flex flex-col w-full min-h-[450px] bg-white p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 dark:bg-black transition-transform hover:scale-[1.01]'
+                        className='flex flex-col w-full min-h-112.5 bg-white p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 dark:bg-black transition-transform hover:scale-[1.01]'
                     >
                         <img
                             src='https://i.pinimg.com/736x/6c/99/6b/6c996bf860ccbd7c0d2511093edee0bf.jpg'
@@ -89,7 +89,7 @@ const ProjectCard: React.FC<RepolistProps> = ({ username }) => {
                         <h3 className='font-bold mt-4 text-xl dark:text-white'>
                             {repo.name.replaceAll('_', " ")}
                         </h3>
-                        <p className='text-sm text-gray-600 mt-2 dark:text-gray-300 flex-grow'>
+                        <p className='text-sm text-gray-600 mt-2 dark:text-gray-300 grow'>
                             {repo.description ?? "No description available for this repository."}
                         </p>
 
@@ -102,7 +102,6 @@ const ProjectCard: React.FC<RepolistProps> = ({ username }) => {
                 ))}
             </section>
 
-            {/* Responsive Pagination: Centers and wraps on small screens */}
             <footer className='flex flex-wrap justify-center items-center gap-2 mt-10'>
                 <button
                     disabled={currentPage === 1}
