@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import portada from '../../assets/portada.png';
 const FeaturedProject: React.FC = () => {
     return (
         <section className="w-full mt-12">
@@ -12,7 +12,7 @@ const FeaturedProject: React.FC = () => {
 
                     <div className="w-full lg:w-1/2 overflow-hidden bg-gray-200 dark:bg-gray-900">
                         <img
-                            src="/src/assets/portada.png"
+                            src={portada}
                             alt="ArielCalendar Preview"
                             className="w-full h-full object-cover min-h-62.5 lg:min-h-100 transition-transform duration-500 group-hover:scale-105"
                         />
