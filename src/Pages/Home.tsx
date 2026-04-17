@@ -16,7 +16,8 @@ function Home() {
     return (
         <div className='bg-gray-100 min-h-screen dark:bg-gray-900 transition-colors duration-300'>
             <div className='max-w-4xl mx-auto px-6 py-10'>
-                <Reveal><header className='w-full'>
+                <Reveal>
+                    <header className='w-full'>
                     <section className='flex flex-col-reverse md:flex-row justify-between items-center gap-8'>
                         <div className="text-center md:text-left">
                             <ProfileInfo
@@ -29,7 +30,8 @@ function Home() {
                             <ProfileImage resource={yo}/>
                         </section>
                     </section>
-                </header></Reveal>
+                </header>
+                </Reveal>
 
 
                 <main className='mt-12 space-y-16'>
@@ -58,19 +60,6 @@ function Home() {
                     </section>
                     </Reveal>
 
-                   <Reveal>
-                       <section>
-                       <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white  w-fit">
-                           Featured Project
-                       </h2>
-                       <ExperiencesCard
-                           title={'ArielCalendar - Management System'}
-                           name={'Freelance Project'}
-                           time={'Jan 2026 - Feb 2026 [cite: 23]'}
-                           description={'Fullstack architecture using Next.js 16, TypeScript, and MongoDB. Features Server Actions for CRUD and a secure Admin Dashboard.'}
-                       />
-                   </section>
-                   </Reveal>
 
                     <Reveal>
                         <section className="w-full overflow-hidden">
@@ -85,7 +74,7 @@ function Home() {
                     <footer className='mt-16 pb-10'>
                     <Education/>
                     <PersonalSkills/>
-                    <SkillCards Skills={["Next.js", "TypeScript", "Node.js", "MongoDB", "Python", "Java Spring", "Tailwind CSS", "JavaScript" , "CSS" , "PostgresSQL" ]} />
+                    <SkillCards Skills={["Next.js", "TypeScript", "Node.js", "MongoDB", "Python", "Java Spring", "Tailwind CSS", "JavaScript" , "CSS" , "PostgresSQL","Java Spring", "Python" ]} />
                 </footer>
                 </Reveal>
 

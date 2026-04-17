@@ -1,5 +1,6 @@
 import * as React from "react";
-import portada from '../../assets/portada.png';
+import portada from '../../assets/Portada.png';
+import Ecommerce from '../../assets/Ecommerce.png'
 const FeaturedProject: React.FC = () => {
     return (
         <section className="w-full mt-12">
@@ -25,7 +26,7 @@ const FeaturedProject: React.FC = () => {
                                     Star Project
                                 </span>
                                 <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
-                                    Jan 2026 - Feb 2026
+                                    Nov 2025 - Feb 2026
                                 </span>
                             </div>
 
@@ -37,7 +38,7 @@ const FeaturedProject: React.FC = () => {
                                 Fullstack appointment management system built with <strong>Next.js 16</strong>.
                                 Featuring a secure admin dashboard and a public booking interface.
                                 Optimized for performance using <strong>Server Actions</strong> and
-                                <strong> Mongoose</strong> for robust data modeling.
+                                <strong> PostgreSQL</strong> for robust data modeling.
                             </p>
 
                             <div className="flex flex-wrap gap-2 mb-8">
@@ -60,6 +61,69 @@ const FeaturedProject: React.FC = () => {
                             </a>
                             <a
                                 href="https://scheduling-app-orcin-eight.vercel.app/"
+                                className="flex-1 text-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-bold rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
+                            >
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+            <article className="group relative w-full bg-white dark:bg-black mt-10 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-800 shadow-lg transition-all hover:shadow-2xl">
+                <div className="flex flex-col lg:flex-row">
+
+                    <div className="w-full lg:w-1/2 overflow-hidden bg-gray-200 dark:bg-gray-900">
+                        <img
+                            src={Ecommerce}
+                            alt="Repuestos la abuela Ecommerce"
+                            className="w-full h-full object-cover min-h-62.5 lg:min-h-100 transition-transform duration-500 group-hover:scale-105"
+                        />
+                    </div>
+
+                    <div className="w-full lg:w-1/2 p-6 md:p-10 flex flex-col justify-between">
+                        <div>
+                            <div className="flex items-center gap-3 mb-4">
+                                <span className="px-3 py-1 text-xs font-bold tracking-widest uppercase bg-blue-600 text-white rounded-full">
+                                    Star Project
+                                </span>
+                                <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
+                                    Feb 2026 - March 2026
+                                </span>
+                            </div>
+
+                            <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-4">
+                                Repuestos la abuela Ecommerce
+                            </h3>
+
+
+                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+                                Fullstack Ecommerce system built with <strong>Next.js 16</strong>.
+                                Featuring a secure admin dashboard and a public Ecommerce for buy autoparts for mototaxi
+                                Optimized for performance using <strong>Server Actions</strong> and
+                                <strong> PostgreSQL</strong> for robust data modeling.
+                            </p>
+                            <div className="flex flex-wrap gap-2 mb-8">
+                                {["Next.JS 16", "TypeScript", "PostgreSQL","Node.JS", "Server Actions", "TailwindCSS", "APIs RestFUL","React.JS"].map((tech) => (
+                                    <span key={tech} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs font-semibold rounded-md border border-gray-200 dark:border-gray-700">
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col sm:flex-row gap-4">
+                            <a
+                                href="https://github.com/SmatamorosN04/E_Commerce"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 text-center px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-bold rounded-xl hover:opacity-90 transition-opacity"
+                            >
+                                View Code
+                            </a>
+                            <a
+                                href="https://e-commerce-five-virid-58.vercel.app/"
                                 className="flex-1 text-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-bold rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all"
                             >
                                 Live Demo
