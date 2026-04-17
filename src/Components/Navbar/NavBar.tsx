@@ -9,7 +9,7 @@ function NavBar() {
                 <ThemeToggle/>
                 <div className="flex items-center space-x-6 rtl:space-x-reverse">
                     <Link className='text-black dark:text-white text-2xl' to='/'>Home </Link>
-                    <Link  className='text-black dark:text-white text-2xl' to='/repos/1'>Example of Repo</Link>
+
                 </div>
             </div>
         </nav>
