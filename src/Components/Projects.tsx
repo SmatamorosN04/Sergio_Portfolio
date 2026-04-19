@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Database, Layout} from 'lucide-react';
+import { ExternalLink, Github, Layout} from 'lucide-react';
 
 const projects = [
     {
