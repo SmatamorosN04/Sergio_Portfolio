@@ -60,7 +60,7 @@ export default function Home() {
 
             <footer className="relative z-10 py-12 text-center border-t border-slate-900 bg-slate-950">
                 <p className="text-slate-500 text-sm tracking-widest font-mono">
-                    SERGIO MATAMOROS &copy; {new Date().getFullYear()} — HECHO CON NEXT.JS & TAILWIND
+                    SERGIO MATAMOROS &copy; {new Date().getFullYear()}
                 </p>
             </footer>
         </div>

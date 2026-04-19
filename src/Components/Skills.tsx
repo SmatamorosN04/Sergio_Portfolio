@@ -2,7 +2,8 @@
 const skills = {
     frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vite.js", "UX/UI"],
     backend: ["Node.js", "Express.js", "PostgreSQL", "MongoDB", "RESTful APIs"],
-    tools: ["Git/GitHub", "Metodologías Ágiles", "Gestión de BD"]
+    tools: ["Git/GitHub", "Metodologías Ágiles", "Gestión de BD"],
+    soft: ["Trabajo en Equipo", "Empatía", "Liderazgo", "Pensamiento Analítico", "Detallismo"]
 };
 
 const courses = [
@@ -36,6 +37,29 @@ const Skills = () => {
                                 </span>
                             ))}
                         </div>
+
+                    </div>
+                    <div>
+                        <p className="text-sm font-mono text-cyan-400 mb-3 uppercase tracking-widest">Herramientas</p>
+                        <div className="flex flex-wrap gap-2">
+                            {skills.tools.map(s => (
+                                <span key={s} className="px-3 py-1 bg-slate-900 border border-slate-800 rounded text-slate-300 text-sm">
+                                    {s}
+                                </span>
+                            ))}
+                        </div>
+
+                    </div>
+                    <div>
+                        <p className="text-sm font-mono text-cyan-400 mb-3 uppercase tracking-widest">Habilidades blandas</p>
+                        <div className="flex flex-wrap gap-2">
+                            {skills.soft.map(s => (
+                                <span key={s} className="px-3 py-1 bg-slate-900 border border-slate-800 rounded text-slate-300 text-sm">
+                                    {s}
+                                </span>
+                            ))}
+                        </div>
+
                     </div>
                 </div>
             </div>
