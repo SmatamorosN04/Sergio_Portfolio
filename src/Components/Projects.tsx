@@ -1,5 +1,6 @@
 import { ExternalLink, Github, Layout} from 'lucide-react';
-
+import ecommerceimage from '../assets/Ecommerce.png'
+import schedulingImage from '../assets/Portada.png'
 const projects = [
     {
         title: "E-Commerce Repuestos San Antonio",
@@ -7,7 +8,7 @@ const projects = [
         tech: ["Next.js", "PostgreSQL", "Tailwind CSS", "TypeScript"],
         link: "https://e-commerce-five-virid-58.vercel.app/",
         github: "https://github.com/SmatamorosN04/E_Commerce",
-        image: "../assets/Ecommerce.png",
+        image: ecommerceimage,
         features: ["Filtrado dinámico", "Gestión de existencias", "UX Reactiva"]
     },
     {
@@ -16,7 +17,7 @@ const projects = [
         tech: ["Next.js", "MongoDB", "Server Actions", "Context API"],
         link: "https://scheduling-app-orcin-eight.vercel.app/",
         github: "https://github.com/SmatamorosN04/scheduling_APP",
-        image: "Portada.png",
+        image: schedulingImage,
         features: ["Zonas horarias", "Dashboard CRUD", "Auth segura"]
     }
 ];
@@ -26,8 +27,13 @@ const Projects = () => {
             {projects.map((project, index) => (
                 <div key={index} className="group relative bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300">
                     {/* Overlay de imagen o placeholder */}
-                    <div className="h-48 bg-slate-800 flex items-center justify-center relative overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60" />
+                    <div className="h-48 w-full bg-slate-800 relative overflow-hidden">
+                        <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent opacity-60" />
                         <Layout className="w-12 h-12 text-slate-700 group-hover:scale-110 transition-transform" />
                     </div>
 
