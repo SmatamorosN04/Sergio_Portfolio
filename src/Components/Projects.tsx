@@ -7,7 +7,7 @@ const projects = [
         tech: ["Next.js", "PostgreSQL", "Tailwind CSS", "TypeScript"],
         link: "https://e-commerce-five-virid-58.vercel.app/",
         github: "https://github.com/SmatamorosN04/E_Commerce",
-        image: "/Ecommerce.png",
+        image: "../assets/Ecommerce.png",
         features: ["Filtrado dinámico", "Gestión de existencias", "UX Reactiva"]
     },
     {

@@ -35,7 +35,7 @@ const Hero = () => {
                 <a
                 href="/Curriculum.pdf"
                 target="_blank"
-                className="px-6 py-3 border border-slate-700 font-semibold rounded-lg hover:bg-slate-800 transition-all"
+                className="px-6 py-3 bg-white border border-slate-700 font-semibold rounded-lg hover:bg-slate-800 transition-all"
                 >
                     Descargar CV
                 </a>
