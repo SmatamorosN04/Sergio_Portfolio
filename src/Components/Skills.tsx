@@ -1,4 +1,3 @@
-import React from 'react'
 
 const skills = {
     frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vite.js", "UX/UI"],
