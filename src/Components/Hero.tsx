@@ -1,5 +1,6 @@
 import miFoto from '../assets/yo.png';
 import micv from '../assets/Curriculum.pdf'
+import Hero3D from './Animations/Hero3D';
 const Hero = () => {
     return (
         <div className="flex flex-col md:flex-row items-center justify-between gap-12 min-h-[70vh] py-20">
@@ -49,11 +50,7 @@ const Hero = () => {
                     <div className="absolute inset-0  blur-[80px] rounded-full animate-pulse" />
 
                     <div className="relative z-10 w-full h-full rounded-2xl overflow-hidden border-2 border-slate-800 shadow-2xl">
-                        <img
-                            src={miFoto}
-                            alt="Sergio Matamoros"
-                            className="w-full h-full object-cover transition-all duration-700 ease-in-out scale-105 hover:scale-100"
-                        />
+                       < Hero3D imageSrc={miFoto}/>
                     </div>
 
                     <div className="absolute -bottom-4 -left-4 w-20 h-20 border-l-2 border-b-2 border-cyan-500/30 rounded-bl-2xl z-0" />

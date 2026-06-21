@@ -1,7 +1,6 @@
 // Components/Animations/TechCube.tsx
 import { useRef, useState } from "react";
 
-// Mantenemos tus mismos imports locales intactos
 import nextLogo from "../../assets/Next.js.png";
 import reactLogo from "../../assets/React.png";
 import tsLogo from "../../assets/TypeScript.png";
@@ -15,7 +14,6 @@ export default function TechCube() {
     const [rotation, setRotation] = useState({ x: -20, y: 45 });
     const dragStart = useRef({ x: 0, y: 0 });
 
-    // Capturar el inicio del arrastre (Mouse)
     const handleMouseDown = (e: React.MouseEvent) => {
         setIsDragging(true);
         dragStart.current = { x: e.clientX, y: e.clientY };

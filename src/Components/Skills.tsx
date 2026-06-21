@@ -1,4 +1,4 @@
-
+import TechCube from "./Animations/TechCube";
 const skills = {
     frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vite.js", "UX/UI"],
     backend: ["Node.js", "Express.js", "PostgreSQL", "MongoDB", "RESTful APIs"],
@@ -80,10 +80,16 @@ const Skills = () => {
                                 <span className="text-slate-500 font-mono text-xs">{course.date}</span>
                             </div>
                         ))}
+
                     </div>
                 </div>
             </div>
-
+                        <div className="w-full flex flex-col items-center justify-center pt-8 border-t border-slate-900/50">
+                <p className="text-xs font-mono text-slate-600 mb-4 tracking-widest uppercase animate-pulse">
+                    Interactúa con el cubo del Stack
+                </p>
+                <TechCube />
+            </div>
         </div>
     )
 }
