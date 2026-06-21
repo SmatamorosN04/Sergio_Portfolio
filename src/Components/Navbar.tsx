@@ -1,10 +1,8 @@
 "use client";
 import { useState, useEffect } from 'react';
-import { Menu, X, Code2, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../hooks/useTheme';
+import { Menu, X, Code2 } from 'lucide-react';
 
 const Navbar = () => {
-    const { theme, toggleTheme } = useTheme();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -51,13 +49,7 @@ const Navbar = () => {
                         </a>
                     ))}
                     
-                    <button 
-                        onClick={toggleTheme}
-                        className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:ring-2 ring-cyan-500 transition-all"
-                        title="Toggle Theme"
-                    >
-                        {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-                    </button>
+                  
 
                     <a
                         href="#contacto"
@@ -69,12 +61,7 @@ const Navbar = () => {
 
                 {/* Mobile Menu Button */}
                 <div className="flex items-center gap-4 md:hidden">
-                    <button 
-                        onClick={toggleTheme}
-                        className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
-                    >
-                        {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-                    </button>
+                   
                     <button
                         className="text-slate-600 dark:text-slate-300"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

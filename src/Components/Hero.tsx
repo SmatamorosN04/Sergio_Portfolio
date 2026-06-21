@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import miFoto from '../assets/yo.png';
-import micv from '../assets/Curriculum.pdf'
+import micv from '../assets/Curriculum.pdf';
+// 1. Dejamos el import limpio del Hero3D
+import Hero3D from './Animations/Hero3D';
 
 const Hero = () => {
     return (
@@ -66,12 +68,8 @@ const Hero = () => {
                 <div className="relative w-64 h-64 lg:w-80 lg:h-80">
                     <div className="absolute inset-0 bg-cyan-500/20 dark:bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" />
 
-                    <div className="relative z-10 w-full h-full rounded-3xl overflow-hidden border-2 border-slate-200 dark:border-slate-800 shadow-2xl group">
-                        <img
-                            src={miFoto}
-                            alt="Sergio Matamoros"
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
+                    <div className="relative z-10 w-full h-full rounded-2xl overflow-hidden border-2 border-slate-800 shadow-2xl">
+                       <Hero3D imageSrc={miFoto}/>
                     </div>
 
                     <div className="absolute -bottom-6 -right-6 w-32 h-32 border-r-2 border-b-2 border-cyan-500/30 rounded-br-3xl z-0" />

@@ -4,12 +4,16 @@ import Experience from '../Components/Experience';
 import Projects from '../Components/Projects';
 import Skills from '../Components/Skills';
 import Contact from '../Components/Contact';
+import ThreeBackground from '../Components/ThreeBackground';
 
 export default function Home() {
     return (
         <div className="relative bg-white dark:bg-slate-950 transition-colors duration-300 selection:bg-cyan-500/30 selection:text-cyan-200">
             <Navbar/>
+            
+            {/* Contenedor del fondo unificado con ThreeJS */}
             <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+                <ThreeBackground/>
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] rounded-full bg-cyan-500/10 dark:bg-cyan-900/20 blur-[120px]"/>
                 <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 dark:bg-blue-900/20 blur-[120px]"/>
             </div>
