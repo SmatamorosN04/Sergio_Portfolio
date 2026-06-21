@@ -30,7 +30,7 @@ function ParticleField() {
     };
   }, []);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (!ref.current) return;
     
     ref.current.rotation.x -= delta * 0.05;
