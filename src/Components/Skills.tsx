@@ -1,3 +1,4 @@
+import TechCube from "./Animations/TechCube";
 import { motion } from 'framer-motion';
 
 const skills = {
@@ -66,6 +67,24 @@ const Skills = () => {
                         </p>
                     </motion.div>
 
+                    <div className="space-y-3 mt-6">
+                        <p className="text-sm font-mono text-cyan-400 uppercase tracking-widest">Certificados Recientes</p>
+                        {courses.map((course, index) => (
+                            <div key={index} className="flex justify-between items-center text-sm border-b border-slate-900 pb-2">
+                                <span className="text-slate-300">{course.name}</span>
+                                <span className="text-slate-500 font-mono text-xs">{course.date}</span>
+                            </div>
+                        ))}
+
+                    </div>
+                </div>
+            </div>
+                        <div className="w-full flex flex-col items-center justify-center pt-8 border-t border-slate-900/50">
+                <p className="text-xs font-mono text-slate-600 mb-4 tracking-widest uppercase animate-pulse">
+                    Interactúa con el cubo del Stack
+                </p>
+                <TechCube />
+            </div>
                     <div className="space-y-4">
                         <p className="text-xs font-mono text-slate-500 uppercase tracking-widest ml-1">Certificaciones Recientes</p>
                         <div className="space-y-3">
