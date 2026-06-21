@@ -94,7 +94,6 @@ const Skills = () => {
                 </div>
             </div>
 
-            {/* 2. Inyectamos el TechCube centrado abajo del todo */}
             <div className="w-full flex flex-col items-center justify-center pt-8 border-t border-slate-200 dark:border-slate-800">
                 <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mb-4 tracking-widest uppercase animate-pulse">
                     Interactúa con el cubo del Stack

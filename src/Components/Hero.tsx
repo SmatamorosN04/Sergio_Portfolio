@@ -68,7 +68,7 @@ const Hero = () => {
                 <div className="relative w-64 h-64 lg:w-80 lg:h-80">
                     <div className="absolute inset-0 bg-cyan-500/20 dark:bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" />
 
-                    <div className="relative z-10 w-full h-full rounded-2xl overflow-hidden border-2 border-slate-800 shadow-2xl">
+                    <div className="relative z-10 w-full h-full rounded-2xl border-2 overflow-hidden border-slate-800 shadow-2xl flex items-center justify-center">
                        <Hero3D imageSrc={miFoto}/>
                     </div>
 
