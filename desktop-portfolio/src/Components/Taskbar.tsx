@@ -21,12 +21,11 @@ export default function Taskbar({ windows, onIconClick }: TaskbarProps) {
   }, []);
 
   return (
-    <div className="h-12 w-full bg-slate-900/40 backdrop-blur-2xl border-t border-white/10 absolute bottom-0 left-0 px-3 flex items-center justify-between z-50 select-none shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
+    <div className="h-12 w-full  bg-slate-900/40 backdrop-blur-2xl border-t border-white/10 absolute bottom-0 left-0 px-3 flex items-center justify-between z-50 select-none shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
       
-      {/* 🟢 BOTÓN INICIO: Forzamos el degradado verde real de Windows XP Luna usando inline styles */}
       <button 
         onClick={() => alert("Menú de Inicio")}
-        className="flex items-center  px-4 h-full rounded-r-full text-white font-sans font-black italic text-sm tracking-wider cursor-pointer hover:brightness-110 active:brightness-90 transition-all outline-none border-none"
+        className="flex items-center h-full rounded-4xl text-white font-sans font-black italic text-sm tracking-wider cursor-pointer hover:brightness-110 active:brightness-90 transition-all outline-none border-none"
         style={{ 
           background: "linear-gradient(to bottom, #53a93f 0%, #3c9324 45%, #235716 100%)",
           boxShadow: "inset 1px 1px 1px rgba(255,255,255,0.4), 2px 0 5px rgba(0,0,0,0.3)",
@@ -34,13 +33,13 @@ export default function Taskbar({ windows, onIconClick }: TaskbarProps) {
           
         }}
       >
-        <div className="grid grid-cols-2 gap-0.5 w-3 h-3 rotate-12 not-italic">
+        <div className="grid grid-cols-2 gap-0.7 w-4 h-4 rotate-12 not-italic">
           <div className="bg-red-500 w-1.5 h-1.5 rounded-xs"></div>
           <div className="bg-blue-500 w-1.5 h-1.5 rounded-xs"></div>
           <div className="bg-green-500 w-1.5 h-1.5 rounded-xs"></div>
           <div className="bg-amber-400 w-1.5 h-1.5 rounded-xs"></div>
         </div>
-        <span className="tracking-wide">inicio</span>
+        <span className="tracking-wide ml-1">inicio</span>
       </button>
 
       <div className="flex items-center gap-1.5 flex-1 max-w-xl mx-4 overflow-x-auto no-scrollbar">

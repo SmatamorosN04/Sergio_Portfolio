@@ -2,7 +2,8 @@ import { useState } from "react";
 import Taskbar from "../Components/Taskbar";
 import DesktopIcon from "../Components/DesktopIcon";
 import Window from "../Components/WIndow";
-
+import AboutMe from "../Components/Apps/AboutMe";
+import Projects from "../Components/Apps/Projects";
 export interface WindowApp { 
     id: string;
     title: string;
@@ -15,10 +16,10 @@ export interface WindowApp {
 
 export default function Desktop() {
     const [windows, setWindows] = useState<WindowApp[]>([
-        { id: "about", title: "about_me.sh", icon: "User", isOpen: true, isMaximized: false, isMinimized: false, zIndex: 1 },
-    { id: "projects", title: "projects.json", icon: "FolderGit2", isOpen: false, isMaximized: false, isMinimized: false, zIndex: 1 },
+        { id: "about", title: "about me", icon: "User", isOpen: true, isMaximized: false, isMinimized: false, zIndex: 1 },
+    { id: "projects", title: "projects", icon: "FolderGit2", isOpen: false, isMaximized: false, isMinimized: false, zIndex: 1 },
     { id: "doom", title: "doom.exe", icon: "Gamepad2", isOpen: false, isMaximized: false, isMinimized: false, zIndex: 1 },
-    { id: "terminal", title: "tty1.sh", icon: "Terminal", isOpen: false, isMaximized: false, isMinimized: false, zIndex: 1 },
+    { id: "terminal", title: "Terminal.sh", icon: "Terminal", isOpen: false, isMaximized: false, isMinimized: false, zIndex: 1 },
     ]);
 
     const [maxZIndex, setMaxZIndex] = useState(1);
@@ -86,10 +87,10 @@ return (
             onMaximize={() => toggleWindow(app.id, "maximize")}
             onFocus={() => focusWindow(app.id)}
           >
-            <div className="p-4 font-mono text-xs text-slate-400 leading-relaxed">
-              <span className="text-slate-600">~ $</span> cat {app.title} <br />
-              <span className="text-purple-400 animate-pulse">[!] Módulo {app.id} inicializado. Próximamente interfaz real...</span>
-            </div>
+            {app.id === "about" && <AboutMe/>}
+
+            {app.id === "projects" && <Projects/>}
+            
           </Window>
         ))}
       </div>
