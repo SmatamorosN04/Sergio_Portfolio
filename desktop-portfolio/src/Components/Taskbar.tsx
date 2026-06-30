@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import * as Icons from "lucide-react";
 import type { WindowApp } from "../Pages/Desktop";
