@@ -7,6 +7,6 @@ export default defineConfig({
     tailwindcss(),
     react()],
     build: {
-    cssMinify: "esbuild",
+cssMinify: false,
   },
 })
