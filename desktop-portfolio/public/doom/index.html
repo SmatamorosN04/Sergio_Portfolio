@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DooM Engine</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0c0c0e;
+            color: white;
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        #focushint {
+            font-size: 10px;
+            color: #a1a1aa;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 640px; /* Tamaño ideal para subventanas */
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .big-holder {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background-color: #000;
+            border: 2px solid #27272a;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+        }
+
+        #screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.01; 
+            z-index: 10;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #gradientScreen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            image-rendering: pixelated;
+            pointer-events: none; 
+            background-size: 100% 100%;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="focushint">Cargando sistema binario...</div>
+    
+    <div class="container">
+      <div class="big-holder">
+        <div id="gradientScreen"></div>
+        <canvas id="screen" tabindex="0"></canvas>
+      </div>
+    </div>
+
+    <script>
+      "use strict";
+      var memory = new WebAssembly.Memory({ initial: 108 });
+
+      function readWasmString(offset, length) {
+        const bytes = new Uint8Array(memory.buffer, offset, length);
+        return new TextDecoder("utf8").decode(bytes);
+      }
+
+      function getMilliseconds() {
+        return performance.now();
+      }
+
+      const canvas = document.getElementById("screen");
+      const doom_screen_width = 320 * 2;
+      const doom_screen_height = 200 * 2;
+
+      function rgbaToHex(r, g, b) {
+        return "#" + [r, g, b].map((x) => Math.round(x).toString(16).padStart(2, "0")).join("");
+      }
+
+      function averageBlockColour(data, startX, startY, width, blockSize) {
+        let r = 0, g = 0, b = 0;
+        for (let y = startY; y < startY + blockSize; y++) {
+          for (let x = startX; x < startX + blockSize; x++) {
+            const i = (y * width + x) * 4;
+            r += data[i]; g += data[i + 1]; b += data[i + 2];
+          }
+        }
+        const size = blockSize * blockSize;
+        return rgbaToHex(r / size, g / size, b / size);
+      }
+
+      function drawCanvas(ptr) {
+        const doom_screen = new Uint8ClampedArray(memory.buffer, ptr, doom_screen_width * doom_screen_height * 4);
+        const gradientDiv = document.getElementById("gradientScreen");
+
+        const blockSize = 2;
+        const scaledWidth = doom_screen_width / blockSize;
+        const scaledHeight = doom_screen_height / blockSize;
+
+        const layers = []; const positions = []; const sizes = [];
+        const vwu = 100 / scaledWidth; const vhu = 100 / scaledHeight;
+
+        for (let y = 0; y < doom_screen_height; y += blockSize) {
+          let stops = []; let prevColor = null; let segmentStart = 0;
+
+          for (let x = 0; x < doom_screen_width; x += blockSize) {
+            const avgColor = averageBlockColour(doom_screen, x, y, doom_screen_width, blockSize);
+            if (prevColor === null) {
+              prevColor = avgColor; segmentStart = x / blockSize;
+            } else if (avgColor !== prevColor) {
+              stops.push(`${prevColor} ${segmentStart * vwu}%, ${prevColor} ${(x * vwu) / blockSize}%`);
+              segmentStart = x / blockSize; prevColor = avgColor;
+            }
+          }
+          stops.push(`${prevColor} ${segmentStart * vwu}%, ${prevColor} ${scaledWidth * vwu}%`);
+
+          layers.push(`linear-gradient(to right, ${stops.join(", ")})`);
+          positions.push(`0px ${(y * vhu * 0.99) / blockSize}%`);
+          sizes.push(`${scaledWidth * vwu}% ${vhu}%`);
+        }
+
+        gradientDiv.style.backgroundImage = layers.join(", ");
+        gradientDiv.style.backgroundPosition = positions.join(", ");
+        gradientDiv.style.backgroundSize = sizes.join(", ");
+        gradientDiv.style.backgroundRepeat = "no-repeat";
+      }
+
+      var importObject = {
+        js: {
+          js_console_log: () => {},
+          js_stdout: () => {},
+          js_stderr: () => {},
+          js_milliseconds_since_start: getMilliseconds,
+          js_draw_screen: drawCanvas,
+        },
+        env: { memory: memory },
+      };
+
+      document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+      // 🛠️ LLAMADA 100% LOCAL SIN RESTRICCIONES DE CORS
+      fetch("doom.wasm")
+        .then(response => response.arrayBuffer())
+        .then(bytes => WebAssembly.instantiate(bytes, importObject))
+        .then((obj) => {
+          obj.instance.exports.main();
+
+          let doomKeyCode = function (keyCode) {
+            switch (keyCode) {
+              case 8: return 127;
+              case 17: return 0x80 + 0x1d;
+              case 18: return 0x80 + 0x38;
+              case 37: return 0xac;
+              case 38: return 0xad;
+              case 39: return 0xae;
+              case 40: return 0xaf;
+              default:
+                if (keyCode >= 65 && keyCode <= 90) return keyCode + 32;
+                if (keyCode >= 112 && keyCode <= 123) return keyCode + 75;
+                return keyCode;
+            }
+          };
+
+          let keyDown = function (keyCode) { obj.instance.exports.add_browser_event(0, keyCode); };
+          let keyUp = function (keyCode) { obj.instance.exports.add_browser_event(1, keyCode); };
+
+          canvas.addEventListener("keydown", (e) => { keyDown(doomKeyCode(e.keyCode)); e.preventDefault(); }, false);
+          canvas.addEventListener("keyup", (e) => { keyUp(doomKeyCode(e.keyCode)); e.preventDefault(); }, false);
+
+          const focushint = document.getElementById("focushint");
+          canvas.addEventListener("focusin", () => { focushint.innerText = "🎮 CONTROL ACTIVO - [Flechas: Moverse] [Ctrl: Disparar] [Espacio: Abrir]"; }, false);
+          canvas.addEventListener("focusout", () => { focushint.innerText = "⚠️ JUEGO PAUSADO - Haz clic en la pantalla para jugar"; }, false);
+
+          canvas.focus();
+
+          function step(timestamp) {
+            obj.instance.exports.doom_loop_step();
+            window.requestAnimationFrame(step);
+          }
+          window.requestAnimationFrame(step);
+        })
+        .catch(err => {
+          document.getElementById("focushint").innerText = "Error crítico al cargar doom.wasm local.";
+          console.error(err);
+        });
+    </script>
+</body>
+</html>
