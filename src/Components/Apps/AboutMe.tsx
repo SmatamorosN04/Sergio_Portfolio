@@ -39,10 +39,17 @@ export default function AboutMe(){
                 <div className="space-y-3.5 pl-1 ">
                     <div>
                         <h4 className="font-bold text-slate-950 text-xs uppercase m-0 tracking-wide">plataforma E-commerce SaaS</h4>
-<p className="text-slate-600 m-0 mt-0.5 font-medium">Sistema completo y comercializable de ventas orientado a repuestos de mototaxis, con persistencia avanzada de datos e historial de inventario utilizando PostgreSQL.</p>                    </div>
+<p className="text-slate-600 m-0 mt-0.5 font-medium">Sistema completo y comercializable de ventas orientado a repuestos de mototaxis, con persistencia avanzada de datos e historial de inventario utilizando PostgreSQL.</p>  
+                        <a href="https://e-commerce-five-virid-58.vercel.app" className="text-[#0a60ff] hover:underline">
+                                Click Aqui para ver el proyecto
+                        </a>
+                  </div>
                     <div>
                         <h4 className="font-bold text-slate-950 text-xs uppercase m-0 tracking-wide">Ariel Tech Service - Scheduling System</h4>
                         <p className="text-slate-600 m-0 mt-0.5 font-medium">Plataforma de reserva, análisis de campo y optimización de citas diseñada para técnicos de mantenimiento y sistemas de aire acondicionado.</p>
+                        <a href="https://scheduling-app-orcin-eight.vercel.app" className="text-[#0a60ff] hover:underline">  <a href="https://e-commerce-five-virid-58.vercel.app" className="text-[#0a60ff] hover:underline">
+                                Click Aqui para ver el proyecto
+                        </a></a>
                     </div>
                 </div>
             </div>
