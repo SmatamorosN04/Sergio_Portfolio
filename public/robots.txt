@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://smatamorosn04.github.io/Sergio_Portfolio/sitemap.xml

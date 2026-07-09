@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import * as Icons from "lucide-react";
+import { User, FolderGit2, Gamepad2, Terminal, HelpCircle, Cpu } from "lucide-react";
 import type { WindowApp } from "../Pages/Desktop";
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  User,
+  FolderGit2,
+  Gamepad2,
+  Terminal,
+};
 
 interface TaskbarProps {
   windows: WindowApp[];
   onIconClick: (id: string) => void;
+  onStartClick: () => void;
 }
 
-export default function Taskbar({ windows, onIconClick }: TaskbarProps) {
+export default function Taskbar({ windows, onIconClick, onStartClick }: TaskbarProps) {
   const [time, setTime] = useState("");
 
   useEffect(() => {
@@ -25,7 +33,7 @@ export default function Taskbar({ windows, onIconClick }: TaskbarProps) {
     <div className="h-12 w-full  bg-slate-900/40 backdrop-blur-2xl border-t border-white/10 absolute bottom-0 left-0 px-3 flex items-center justify-between z-50 select-none shadow-[0_-4px_20px_rgba(0,0,0,0.3)]">
       
       <button 
-        onClick={() => alert("Menú de Inicio")}
+        onClick={(e) => { e.stopPropagation(); onStartClick(); }}
         className="flex items-center h-full rounded-4xl text-white font-sans font-black italic text-sm tracking-wider cursor-pointer hover:brightness-110 active:brightness-90 transition-all outline-none border-none"
         style={{ 
           background: "linear-gradient(to bottom, #53a93f 0%, #3c9324 45%, #235716 100%)",
@@ -43,10 +51,10 @@ export default function Taskbar({ windows, onIconClick }: TaskbarProps) {
         <span className="tracking-wide ml-1">inicio</span>
       </button>
 
-      <div className="flex items-center gap-1.5 flex-1 max-w-xl mx-4 overflow-x-auto no-scrollbar">
+      <div className="flex items-center gap-1.5 ml-3 mr-auto overflow-x-auto no-scrollbar max-w-xs sm:max-w-md md:max-w-xl">
         {windows.map(app => {
           if (!app.isOpen) return null;
-          const LucideIcon = (Icons as any)[app.icon] || Icons.HelpCircle;
+          const LucideIcon = iconMap[app.icon] || HelpCircle;
 
           return (
             <button
@@ -71,12 +79,12 @@ export default function Taskbar({ windows, onIconClick }: TaskbarProps) {
         })}
       </div>
 
-      <div className="flex items-center gap-3 text-xs font-bold font-mono bg-slate-950/40 border border-slate-800/80 px-4 h-8 rounded-md shadow-[inset_1px_1px_3px_rgba(0,0,0,0.6)]">
-        <div className="flex items-center gap-1.5 text-cyan-400/90 drop-shadow-[0_0_4px_rgba(34,211,238,0.3)]">
-          <Icons.Cpu size={13} className="animate-spin" style={{ animationDuration: '8s' }} />
+      <div className="flex items-center gap-3 text-xs font-bold font-mono bg-slate-950/40 border border-slate-800/80 px-3 sm:px-4 h-8 rounded-md shadow-[inset_1px_1px_3px_rgba(0,0,0,0.6)]">
+        <div className="hidden sm:flex items-center gap-1.5 text-cyan-400/90 drop-shadow-[0_0_4px_rgba(34,211,238,0.3)]">
+          <Cpu size={13} className="animate-spin" style={{ animationDuration: '8s' }} />
           <span className="text-[10px] text-slate-400 uppercase tracking-wider">hypr</span>
         </div>
-        <div className="w-px h-3 bg-slate-800" />
+        <div className="hidden sm:block w-px h-3 bg-slate-800" />
         <span className="text-white font-medium tabular-nums tracking-wider">
           {time}
         </span>

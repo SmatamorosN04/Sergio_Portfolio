@@ -14,16 +14,24 @@ interface WindowProps {
 export default function Window({ app, onClose, onMinimize, onMaximize, onFocus, children }: WindowProps) {
   // Posición inicial de la ventana
   const [position, setPosition] = useState({ x: 100, y: 80 });
+
+  // Detección de pantallas móviles
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   
   // Refs para controlar el arrastre síncrono sin re-renders innecesarios
   const isDraggingRef = useRef(false);
   const dragStart = useRef({ x: 0, y: 0 });
 
-  if (app.isMinimized) return null;
-
   const handlePointerDown = (e: React.PointerEvent) => {
-    // Evitamos arrastrar si la ventana está maximizada
-    if (app.isMaximized) return; 
+    // Evitamos arrastrar si la ventana está maximizada o es móvil
+    if (app.isMaximized || isMobile) return; 
     
     // Enfocamos la ventana (sube el zIndex)
     onFocus();
@@ -38,7 +46,7 @@ export default function Window({ app, onClose, onMinimize, onMaximize, onFocus, 
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isDraggingRef.current) return;
+    if (!isDraggingRef.current || isMobile) return;
     setPosition({
       x: e.clientX - dragStart.current.x,
       y: e.clientY - dragStart.current.y
@@ -50,16 +58,18 @@ export default function Window({ app, onClose, onMinimize, onMaximize, onFocus, 
     (e.target as HTMLElement).releasePointerCapture(e.pointerId);
   };
 
+  const forceMaximized = app.isMaximized || isMobile;
+
   return (
     <div
       onClick={onFocus}
       style={{
         zIndex: app.zIndex,
-        transform: app.isMaximized ? "none" : `translate(${position.x}px, ${position.y}px)`,
-        top: app.isMaximized ? "0px" : "0",
-        left: app.isMaximized ? "0px" : "0",
-        width: app.isMaximized ? "100%" : "580px",
-        height: app.isMaximized ? "calc(100% - 48px)" : "400px", // Deja espacio para la Taskbar clara
+        transform: forceMaximized ? "none" : `translate(${position.x}px, ${position.y}px)`,
+        top: forceMaximized ? "0px" : "0",
+        left: forceMaximized ? "0px" : "0",
+        width: forceMaximized ? "100%" : "580px",
+        height: forceMaximized ? "calc(100% - 48px)" : "400px", // Deja espacio para la Taskbar clara
       }}
       /* 'window' activa el marco azul de XP, añadimos clases de Tailwind para el posicionamiento */
       className="absolute flex flex-col window transition-all duration-75 select-none shadow-[5px_5px_15px_rgba(0,0,0,0.3)]"
@@ -79,9 +89,9 @@ export default function Window({ app, onClose, onMinimize, onMaximize, onFocus, 
 
         {/* CONTROLES ORIGINALES EN 3D (Minimizar, Maximizar, Cerrar) */}
         <div className="title-bar-controls">
-          <button aria-label="Minimize" onClick={(e) => { e.stopPropagation(); onMinimize(); }} />
-          <button aria-label="Maximize" onClick={(e) => { e.stopPropagation(); onMaximize(); }} />
-          <button aria-label="Close" onClick={(e) => { e.stopPropagation(); onClose(); }} />
+          <button aria-label="Minimizar" onClick={(e) => { e.stopPropagation(); onMinimize(); }} />
+          <button aria-label="Maximizar" onClick={(e) => { e.stopPropagation(); onMaximize(); }} />
+          <button aria-label="Cerrar" onClick={(e) => { e.stopPropagation(); onClose(); }} />
         </div>
       </div>
 

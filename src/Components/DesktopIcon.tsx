@@ -1,4 +1,4 @@
-import * as Icons from "lucide-react";
+import { User, FolderGit2, Gamepad2, Terminal, HelpCircle } from "lucide-react";
 import type { WindowApp } from "../Pages/Desktop";
 
 interface IconProps {
@@ -6,8 +6,15 @@ interface IconProps {
   onOpen: () => void;
 }
 
+const iconMap: Record<string, React.ComponentType<any>> = {
+  User,
+  FolderGit2,
+  Gamepad2,
+  Terminal,
+};
+
 export default function DesktopIcon({ app, onOpen }: IconProps) {
-  const LucideIcon = (Icons as any)[app.icon] || Icons.HelpCircle;
+  const LucideIcon = iconMap[app.icon] || HelpCircle;
 
   const getIconColorClass = (id: string) => {
     switch (id) {
