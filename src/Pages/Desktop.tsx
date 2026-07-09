@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Taskbar from "../Components/Taskbar";
 import DesktopIcon from "../Components/DesktopIcon";
 import Window from "../Components/WIndow";
 import AboutMe from "../Components/Apps/AboutMe";
 import Projects from "../Components/Apps/Projects";
 import Doom from "../Components/Apps/Doom";
+import Terminal from "../Components/Apps/Terminal";
 
 export interface WindowApp { 
     id: string;
@@ -25,6 +26,18 @@ export default function Desktop() {
     ]);
 
     const [maxZIndex, setMaxZIndex] = useState(1);
+
+    // Estado del Menú de Inicio
+    const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+
+    // Detección de pantallas móviles
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const focusWindow = (id: string) => {
         const newZ = maxZIndex + 1;
@@ -61,7 +74,10 @@ export default function Desktop() {
     };
 
     return (
-        <div className="h-screen w-screen relative overflow-hidden bg-slate-950 p-4 flex flex-col justify-between selection:bg-purple-500/30">
+        <div 
+          onClick={() => setIsStartMenuOpen(false)}
+          className="h-screen w-screen relative overflow-hidden bg-slate-950 p-4 flex flex-col justify-between selection:bg-purple-500/30"
+        >
           
           <div className="absolute inset-0 z-0">
             <img 
@@ -85,34 +101,54 @@ export default function Desktop() {
             </div>
 
             <div className="absolute inset-0 z-20 pointer-events-none">
-  {windows.map((app) => app.isOpen && !app.isMinimized && (
-    <div 
-      key={app.id} 
-      style={{ zIndex: app.zIndex }} 
-      className={`absolute pointer-events-auto transition-all duration-200 ${
-        app.isMaximized 
-          ? "inset-0 w-full h-full p-0" 
-          : "top-10 left-10 w-auto h-auto" 
-      }`}
-    >
-      <Window 
-        app={app} 
-        onClose={() => toggleWindow(app.id, "close")}
-        onMinimize={() => toggleWindow(app.id, "minimize")}
-        onMaximize={() => toggleWindow(app.id, "maximize")}
-        onFocus={() => focusWindow(app.id)}
-      >
-        {app.id === "about" && <AboutMe/>}
-        {app.id === "projects" && <Projects/>}
-        {app.id === "doom" && <Doom/>}
-      </Window>
-    </div>
-  ))}
-</div>
+              {windows.map((app) => {
+                
+                // Renderizar siempre en el DOM "about" y "projects" para permitir indexación SEO.
+                // Doom se mantiene condicional por rendimiento (descarga de emulador/juego).
+                const shouldRenderInDOM = app.id === "about" || app.id === "projects" || app.isOpen;
+                if (!shouldRenderInDOM) return null;
+
+                const isVisible = app.isOpen && !app.isMinimized;
+                const forceMaximized = app.isMaximized || isMobile;
+
+                return (
+                  <div 
+                    key={app.id} 
+                    style={{ 
+                      zIndex: app.zIndex,
+                      display: isVisible ? "block" : "none" 
+                    }} 
+                    className={`absolute pointer-events-auto transition-all duration-200 ${
+                      forceMaximized 
+                        ? "inset-0 w-full h-full p-0" 
+                        : "top-10 left-10 w-auto h-auto" 
+                    }`}
+                  >
+                    <Window 
+                      app={app} 
+                      onClose={() => toggleWindow(app.id, "close")}
+                      onMinimize={() => toggleWindow(app.id, "minimize")}
+                      onMaximize={() => toggleWindow(app.id, "maximize")}
+                      onFocus={() => focusWindow(app.id)}
+                    >
+                      {app.id === "about" && <AboutMe/>}
+                      {app.id === "projects" && <Projects/>}
+                      {app.id === "doom" && app.isOpen && <Doom/>}
+                      {app.id === "terminal" && <Terminal/>}
+                    </Window>
+                  </div>
+                );
+              })}
+            </div>
 
           </div>
 
-          <Taskbar windows={windows} onIconClick={(id) => focusWindow(id)} />
+
+          <Taskbar 
+            windows={windows} 
+            onIconClick={(id) => focusWindow(id)} 
+            onStartClick={() => setIsStartMenuOpen(!isStartMenuOpen)}
+          />
         </div>
     );
 }

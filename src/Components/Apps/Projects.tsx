@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as Icons from "lucide-react";
+import { Loader2, GitBranchPlus, ExternalLink, FolderGit2, Star, GitFork } from "lucide-react";
 
 interface Repo {
     id: number;
@@ -46,7 +46,7 @@ export default function Projects(){
     if(loading){
         return(
             <div className="flex flex-col items-center justify-center h-48 w-full gap-2 font-sans text-slate-600">
-                <Icons.Loader2 className="animate-spin text-[#0a60ff]" size={24}/>
+                <Loader2 className="animate-spin text-[#0a60ff]" size={24}/>
                 <span className="text-xs font-medium">Conecting with repos</span>
             </div>
         );
@@ -55,9 +55,9 @@ export default function Projects(){
     return(
         <div className="font-sans text-xs text-slate-950 w-full h-full flex flex-col gap-4 select-text p-1">
 
-            <div className="flex items-center justify-between pb-3 border-b border-slate-300">
-                <div className="flex items-center gap-2">
-                    <Icons.GitBranchPlus size={18} className="text-slate-800"/>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-300">
+                <div className="flex flex-wrap items-center gap-2">
+                    <GitBranchPlus size={18} className="text-slate-800"/>
                     <span className="font-bold text-sm text-slate-900">Sergio Matamoros</span>
                     <span className="bg-slate-200 text-slate-700 font-medium px-2 py-0.5 rounded-full text-xs border border-slate-300">
                         Public Repositories
@@ -66,10 +66,10 @@ export default function Projects(){
                 <a
                 href="https://github.com/SmatamorosN04"
                 target="_blank"
-                rel="noreffer"
-                className="text-[#0a60ff] font-semibold hover:underline flex items-center gap-1"
+                rel="noreferrer"
+                className="text-[#0a60ff] font-semibold hover:underline flex items-center gap-1 text-[11px] sm:text-xs"
                 >
-                    View Complete perfil <Icons.ExternalLink size={11}/>
+                    View Complete perfil <ExternalLink size={11}/>
                 </a>
             </div>
 
@@ -77,12 +77,12 @@ export default function Projects(){
                 {repos.map((repos) => (
                     <div 
                     key={repos.id}
-                    className="bg-white border border-slate-300 rounded-sm p-3 flex flex-col justify-between shadow-[1px_1px_2px_rgba(0,0,0,0.05)] hover:border-slate-400 transition-colors"
+                    className="bg-white border border-slate-300 rounded-xs p-3 flex flex-col justify-between shadow-[1px_1px_2px_rgba(0,0,0,0.05)] hover:border-[#0a60ff] hover:shadow-[3px_3px_8px_rgba(10,96,255,0.12)] transition-all duration-150"
                     >
                         <div>
                             <div className="flex items-center justify-between gap-2">
                                 <div className="flex items-center gap-1.5 min-w-0">
-                                    <Icons.FolderGit2 size={14} className="text-slate-500 shrink-0" />
+                                    <FolderGit2 size={14} className="text-slate-500 shrink-0" />
                                     <a
                                     href={repos.html_url}
                                     target="_blank"
@@ -111,12 +111,12 @@ export default function Projects(){
                             )}
 
                             <div className="flex items-center gap-1 hover:text-[#0a60ff] cursor-pointer">
-                                <Icons.Star size={12}/>
+                                <Star size={12}/>
                                 <span>{repos.stargazers_count}</span>
                             </div>
 
                             <div className="flex items-center gap-1 hover:text-[#0a60ff] cursor-pointer">
-                                <Icons.GitFork size={12}/>
+                                <GitFork size={12}/>
                                 <span>{repos.forks_count}</span>
                             </div>
 
