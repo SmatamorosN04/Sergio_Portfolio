@@ -11,10 +11,11 @@ export default function AboutMe(){
             </p>
             <div className="pt-1.5 space-y-1 font-medium text-slate-800">
                 <p className="m-0">
-                    <span className="text-slate-500 font-bold">Universidad: </span> Computer Engineering Student @ UNI
+                    <span className="text-slate-500 font-bold">Universidad: </span> Computer Engineering graduate
+                         @ UNI
                 </p>
                 <p className="m-0">
-                    <span className="text-slate-500 font-bold">Rol: </span>Junior Full Stack Developer
+                    <span className="text-slate-500 font-bold">Rol: </span>Full Stack Developer
                 </p>
             </div>
            </div>
