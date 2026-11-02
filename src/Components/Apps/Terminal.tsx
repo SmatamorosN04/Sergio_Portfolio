@@ -41,7 +41,7 @@ export default function Terminal() {
         reply = `Sergio Armando Matamoros
 ------------------------------------
 Estudiante de Ingeniería de Sistemas (UNI)
-Rol: Junior Full Stack Developer
+Rol: Full Stack Developer
 Localización: Arch Linux Localhost
 
 Soy un desarrollador de software enfocado en construir sistemas web funcionales, robustos y con gran rendimiento. Me encanta el entorno Linux, la optimización de código y aprender nuevas tecnologías backend y frontend.`;
@@ -77,7 +77,7 @@ Soy un desarrollador de software enfocado en construir sistemas web funcionales,
     | | | || |__  | | | || |_| || |__  | | |
     | | | ||  __| | | | ||  _  ||  __| | | |
     \\ \\_/ /| |___ \\ \\_/ /| | | || |___ \\ \\_/ /
-     \\___/ \____/  \\___/ \_| |_/\____/  \___/
+     \\___/ \\____/  \\___/ \\_| |_/\\____/  \\___/
 ---------------------------------------------
 OS: Portfolio OS (Vite/React Engine)
 Host: Sergio-Dev-Laptop

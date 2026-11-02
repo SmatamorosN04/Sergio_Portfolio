@@ -1,0 +1,252 @@
+/*
+ * Portfolio OS — recreación ligera del chrome de Windows XP.
+ *
+ * Todo vive SCOPED a `.window` y dentro de @layer components, así que:
+ *  - No contamina botones/links/inputs fuera de las ventanas (taskbar,
+ *    menú de inicio, iconos) como hacía xp.css con sus selectores globales.
+ *  - Las utilidades de Tailwind (layer utilities) siguen pudiendo
+ *    sobreescribir estos estilos dentro de las apps.
+ */
+
+@layer components {
+  /* ============ Marco de la ventana ============ */
+
+  .window {
+    font-family: "Pixelated MS Sans Serif", Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    color: #1d1d1b;
+    background: #ece9d8;
+    border: 1px solid #0831d8;
+    border-top: 1px solid #1941a5;
+    border-radius: 8px 8px 3px 3px;
+    overflow: hidden;
+  }
+
+  /* ============ Barra de título Luna ============ */
+
+  .window .title-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 26px;
+    padding: 0 4px 0 5px;
+    border-radius: 7px 7px 0 0;
+    background:
+      linear-gradient(180deg,
+        #0997ff 0%,
+        #0053ee 8%,
+        #0050ee 40%,
+        #06f 88%,
+        #005bff 96%,
+        #003dd7 100%);
+    user-select: none;
+  }
+
+  .window .title-bar-text {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.2px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.55);
+    padding-left: 2px;
+  }
+
+  .window .title-bar-controls {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .window .title-bar-controls button {
+    position: relative;
+    width: 21px;
+    height: 21px;
+    padding: 0;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    background: linear-gradient(180deg, #6ba3f8 0%, #3b82f6 10%, #2563eb 55%, #1d4ed8 100%);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.55),
+      inset 0 -4px 6px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    transition: filter 80ms ease;
+  }
+
+  .window .title-bar-controls button:hover {
+    filter: brightness(1.18) saturate(1.1);
+  }
+  .window .title-bar-controls button:active {
+    filter: brightness(0.85);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+
+  /* --- Minimizar: barra blanca abajo --- */
+  .window .title-bar-controls button[aria-label="Minimizar"]::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    bottom: 4px;
+    height: 2px;
+    border-radius: 1px;
+    background: #fff;
+  }
+
+  /* --- Maximizar: marco con barra superior --- */
+  .window .title-bar-controls button[aria-label="Maximizar"]::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1px solid #fff;
+    border-top-width: 3px;
+    border-radius: 1px;
+  }
+
+  /* --- Cerrar: X blanca sobre rojo --- */
+  .window .title-bar-controls button[aria-label="Cerrar"] {
+    background: linear-gradient(180deg, #ff9a7e 0%, #f4462a 40%, #d62e12 100%);
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.5),
+      inset 0 -4px 6px rgba(0, 0, 0, 0.2);
+  }
+  .window .title-bar-controls button[aria-label="Cerrar"]::before,
+  .window .title-bar-controls button[aria-label="Cerrar"]::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 11px;
+    height: 2.5px;
+    border-radius: 1px;
+    background: #fff;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+  }
+  .window .title-bar-controls button[aria-label="Cerrar"]::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  .window .title-bar-controls button[aria-label="Cerrar"]::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  /* ============ Cuerpo de la ventana ============ */
+
+  .window .window-body {
+    font-family: inherit;
+    color: #1d1d1b;
+  }
+
+  /* --- Botones estilo XP (push buttons) --- */
+  .window .window-body button {
+    font-family: "Pixelated MS Sans Serif", Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    color: #1d1d1b;
+    padding: 3px 11px;
+    border-radius: 3px;
+    border: 1px solid #003c74;
+    background: linear-gradient(180deg, #fff 0%, #fdfdfa 45%, #eceae2 88%, #d8d0c4 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .window .window-body button:hover {
+    background: linear-gradient(180deg, #fff 0%, #fffdf2 40%, #fbeec6 85%, #f3e0a0 100%);
+    border-color: #003c74;
+    box-shadow:
+      inset -1px -1px 0 rgba(230, 160, 26, 0.55),
+      inset 1px 1px 0 #fff,
+      inset 0 -2px 0 rgba(229, 160, 26, 0.3);
+  }
+
+  .window .window-body button:active {
+    background: linear-gradient(180deg, #c8c5bc 0%, #e3e1d8 40%, #e5e3da 100%);
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.28);
+  }
+
+  .window .window-body button:focus-visible {
+    outline: 1px dotted #003c74;
+    outline-offset: -4px;
+  }
+
+  /* --- Inputs de texto --- */
+  .window .window-body input[type="text"] {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+    color: #000;
+    height: 20px;
+    padding: 0 4px;
+    background: #fff;
+    border: 1px solid #7f9db9;
+    border-radius: 2px;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.12);
+  }
+  .window .window-body input[type="text"]:focus {
+    outline: none;
+    border-color: #003c74;
+  }
+  .window .window-body input[type="text"]::selection {
+    background: #2267cb;
+    color: #fff;
+  }
+
+  /* --- Pestañas (tab strip) --- */
+  .window menu[role="tablist"] {
+    display: flex;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #919b9c;
+  }
+
+  .window menu[role="tablist"] button {
+    position: relative;
+    margin-bottom: -1px;
+    padding: 3px 14px 2px;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #919b9c;
+    border-bottom: 1px solid #919b9c;
+    background: linear-gradient(180deg, #fff 0%, #f1f0e9 55%, #e2e1d8 92%, #dcdad0 100%);
+  }
+
+  .window menu[role="tablist"] button[aria-selected="true"] {
+    z-index: 1;
+    background: #fcfcfe;
+    box-shadow: inset 0 2px 0 #e68b2c;
+    font-weight: 400;
+  }
+
+  .window menu[role="tablist"] button[aria-selected="false"]:hover {
+    box-shadow: inset 0 2px 0 #ffc73c;
+  }
+
+  /* --- Barra de estado --- */
+  .window .status-bar {
+    display: flex;
+    margin: 3px 1px 0;
+    padding: 2px 1px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.28);
+    background: #f1f0e8;
+  }
+
+  .window .status-bar-field {
+    display: flex;
+    align-items: center;
+    padding: 1px 4px;
+    color: #1d1d1b;
+    font-size: 10px;
+    border-right: 1px solid rgba(150, 148, 135, 0.45);
+    border-left: 1px solid rgba(255, 255, 255, 0.75);
+  }
+  .window .status-bar-field:first-of-type {
+    border-left: none;
+  }
+  .window .status-bar-field:last-of-type {
+    border-right: none;
+  }
+}

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import type { WindowApp } from "../Pages/Desktop";
-import 'xp.css'
+import { getAppVisual } from "./appIcons";
 
 interface WindowProps {
   app: WindowApp;
@@ -12,6 +12,7 @@ interface WindowProps {
 }
 
 export default function Window({ app, onClose, onMinimize, onMaximize, onFocus, children }: WindowProps) {
+  const { Icon, gradient } = getAppVisual(app);
   // Posición inicial de la ventana
   const [position, setPosition] = useState({ x: 100, y: 80 });
 
@@ -82,9 +83,13 @@ export default function Window({ app, onClose, onMinimize, onMaximize, onFocus, 
         onPointerUp={handlePointerUp}
         className="title-bar cursor-move"
       >
-        <div className="title-bar-text font-sans font-bold flex items-center gap-1">
-          {/* Opcional: Podrías poner un mini icono aquí si usas PNGs */}
-          {app.title}
+        <div className="title-bar-text font-sans font-bold flex items-center gap-1.5">
+          <span
+            className={`w-4 h-4 shrink-0 flex items-center justify-center rounded-[4px] bg-linear-to-br ${gradient} border border-white/30`}
+          >
+            <Icon size={10} strokeWidth={2.6} className="text-white" />
+          </span>
+          <span className="truncate">{app.title}</span>
         </div>
 
         {/* CONTROLES ORIGINALES EN 3D (Minimizar, Maximizar, Cerrar) */}

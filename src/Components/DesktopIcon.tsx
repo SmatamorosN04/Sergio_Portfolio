@@ -1,47 +1,36 @@
-import { User, FolderGit2, Gamepad2, Terminal, HelpCircle } from "lucide-react";
 import type { WindowApp } from "../Pages/Desktop";
+import { getAppVisual } from "./appIcons";
 
 interface IconProps {
   app: WindowApp;
   onOpen: () => void;
 }
 
-const iconMap: Record<string, React.ComponentType<any>> = {
-  User,
-  FolderGit2,
-  Gamepad2,
-  Terminal,
-};
-
 export default function DesktopIcon({ app, onOpen }: IconProps) {
-  const LucideIcon = iconMap[app.icon] || HelpCircle;
-
-  const getIconColorClass = (id: string) => {
-    switch (id) {
-      case "about":
-        return "text-orange-400";
-      case "projects":
-        return "text-amber-400";
-      case "doom":
-        return "text-red-500";
-      case "terminal":
-        return "text-emerald-400";
-      default:
-        return "text-slate-300";
-    }
-  };
+  const { Icon, gradient } = getAppVisual(app);
 
   return (
     <button
       onClick={onOpen}
-      className="w-24 flex flex-col items-center justify-center gap-1.5 p-2 bg-transparent  hover:bg-sky-400/20  active:bg-sky-500/30 active:border-sky-300/50 transition-all group cursor-pointer text-center select-none z-20 outline-none"
-      style={{ background: "none", boxShadow: "none", border: "none"}}
+      className="group w-[94px] flex flex-col items-center justify-center gap-1.5 p-2 rounded-lg cursor-pointer text-center select-none z-20 outline-none hover:outline hover:outline-1 hover:outline-dashed hover:outline-white/60 hover:bg-cyan-400/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-300 active:bg-cyan-500/25 transition-colors"
     >
-      <div className={`w-12 h-12 flex items-center justify-center transition-transform duration-75 group-hover:scale-105 ${getIconColorClass(app.id)}`}>
-        <LucideIcon size={34} strokeWidth={1.8} />
+      {/* Sombra proyectada del tile */}
+      <div className="relative">
+        <div
+          className={`absolute inset-x-1.5 bottom-0.5 h-2 rounded-[50%] bg-cyan-950/60 blur-[3px] transition-all duration-150 group-hover:scale-x-110 group-hover:-translate-y-[1px]`}
+        />
+        <div
+          className={`relative w-14 h-14 flex items-center justify-center rounded-2xl bg-linear-to-br ${gradient} border border-white/30 shadow-[inset_0_2px_3px_rgba(255,255,255,0.5),inset_0_-8px_12px_rgba(0,0,0,0.18)] transition-transform duration-150 group-hover:scale-110 group-hover:-translate-y-0.5 group-active:scale-95`}
+        >
+          {/* Reflejo superior tipo vidrio */}
+          <div className="absolute inset-x-0 top-0 h-1/2 rounded-t-2xl bg-linear-to-b from-white/35 to-transparent pointer-events-none" />
+          <Icon size={30} strokeWidth={2} className="relative text-white drop-shadow-[0_2px_3px_rgba(0,0,0,0.4)]" />
+        </div>
       </div>
 
-      <span className="text-[11px] font-sans font-medium text-white text-shadow-xp leading-tight px-1 py-0.5 truncate w-full rounded-xs transition-colors block">
+      <span
+        className="text-[11px] font-sans font-semibold text-white leading-tight px-1 py-0.5 truncate w-full rounded-xs transition-colors block text-shadow-xp group-hover:text-cyan-100"
+      >
         {app.title}
       </span>
     </button>

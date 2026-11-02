@@ -1,9 +1,10 @@
 @import "tailwindcss";
+@import "./os.css";
 
 @font-face {
   font-family: "Pixelated MS Sans Serif";
-  src: url("xp.css/dist/ms_sans_serif.woff2") format("woff2"),
-       url("xp.css/dist/ms_sans_serif.woff") format("woff");
+  src: url("./assets/fonts/ms_sans_serif.woff2") format("woff2"),
+       url("./assets/fonts/ms_sans_serif.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -11,8 +12,8 @@
 
 @font-face {
   font-family: "Pixelated MS Sans Serif";
-  src: url("xp.css/dist/ms_sans_serif_bold.woff2") format("woff2"),
-       url("xp.css/dist/ms_sans_serif_bold.woff") format("woff");
+  src: url("./assets/fonts/ms_sans_serif_bold.woff2") format("woff2"),
+       url("./assets/fonts/ms_sans_serif_bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -20,9 +21,58 @@
 
 @font-face {
   font-family: "Perfect DOS VGA 437 Win";
-  src: url("xp.css/dist/PerfectDOSVGA437Win.woff2") format("woff2"),
-       url("xp.css/dist/PerfectDOSVGA437Win.woff") format("woff");
+  src: url("./assets/fonts/PerfectDOSVGA437Win.woff2") format("woff2"),
+       url("./assets/fonts/PerfectDOSVGA437Win.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+/* --- Extras del Portfolio OS --- */
+
+@keyframes start-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-start-menu {
+  animation: start-menu-in 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Etiqueta de icono estilo escritorio XP (texto blanco con sombra para leer sobre el wallpaper) */
+.text-shadow-xp {
+  color: #fff;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.9), 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Scrollbars más finas y modernas dentro del escritorio */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.45);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.65);
+  background-clip: content-box;
 }
